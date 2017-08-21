@@ -20,13 +20,20 @@ class Main extends Component {
   		}).then(
 
 	  		(response) => { 
+          this.setState({array:["x","y"]});
+
+	  			console.log("Hey i am here");
+	  			console.log(response);
 	  		return response.json()
 
 	  		 }).then(
   		(responseData) => {
+
         var categories = responseData.map(function(item) {
             return item['resourceName'];
           });
+        this.setState({array:categories});
+      console.log(responseData)
   		console.log(responseData)
   		}).catch((error) => {
   			console.log(error)
