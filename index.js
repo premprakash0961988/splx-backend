@@ -7,9 +7,9 @@ class Main extends Component {
 		this.state={array:[]}
 	}
 	componentDidMount(){
-		var input = ["a","b","c","d"];
+		var input = ["a","b","c","d","e"];
 		this.setState({array:input})
-  		fetch('http://localhost:8080/getAllCategories',{
+  		fetch('http://52.43.27.150:8080/getAllCategories',{
 	  		method:'get',
 	  	    mode: 'no-cors',
 	  		// headers: {
@@ -20,12 +20,13 @@ class Main extends Component {
   		}).then(
 
 	  		(response) => { 
-	  			console.log("Hey i am here");
-	  			console.log(response);
 	  		return response.json()
 
 	  		 }).then(
   		(responseData) => {
+        var categories = responseData.map(function(item) {
+            return item['resourceName'];
+          });
   		console.log(responseData)
   		}).catch((error) => {
   			console.log(error)
