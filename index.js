@@ -1,5 +1,10 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom';
+var http = require('http');
+
+
+
+
 
 class Main extends Component {
 	constructor(props){
@@ -9,35 +14,62 @@ class Main extends Component {
 	componentDidMount(){
 		var input = ["a","b","c","d","e"];
 		this.setState({array:input})
-  		fetch('http://52.43.27.150:8080/getAllCategories',{
-	  		method:'get',
-	  	    mode: 'no-cors',
-	  		// headers: {
-	  		//             'X-API-CLIENT':'web',
-	  		//             "Content-Type": reqObj['contentType'] ?reqObj['contentType'] : "application/x-www-form-urlencoded"
-	  		//        },
-	  		//        body:reqObj.body
-  		}).then(
 
-	  		(response) => { 
-          this.setState({array:["x","y"]});
 
-	  			console.log("Hey i am here");
-	  			console.log(response);
-	  		return response.json()
 
-	  		 }).then(
-  		(responseData) => {
+var options = {
+  host: '52.43.27.150',
+  port: '8080',
+  path: '/getAllCategories',
+//  mode: 'no-cors'
+};
 
-        var categories = responseData.map(function(item) {
-            return item['resourceName'];
-          });
-        this.setState({array:categories});
-      console.log(responseData)
-  		console.log(responseData)
-  		}).catch((error) => {
-  			console.log(error)
-  		      });
+
+
+var myInit = { method: 'GET',
+               mode: 'no-cors',
+               cache: 'default' };
+var myRequest = new Request('http://52.43.27.150:8080/getAllCategories', myInit);
+
+fetch(myRequest).then(function(response) {
+  console.log(response.blob());
+  return response.blob();
+}).then(function(myBlob) {
+  
+});
+
+
+  		// fetch('http://52.43.27.150:8080/getAllCategories',{
+	  	// 	method:'get',
+	  	//     mode: 'no-cors',
+	  	// 	// headers: {
+	  	// 	//             'X-API-CLIENT':'web',
+	  	// 	//             "Content-Type": reqObj['contentType'] ?reqObj['contentType'] : "application/x-www-form-urlencoded"
+	  	// 	//        },
+	  	// 	//        body:reqObj.body
+  		// }).then(
+
+	  	// 	(response) => { 
+    //       this.setState({array:["x","y"]});
+
+	  	// 		console.log("Hey i am here");
+	  	// 		console.log(response);
+	  	// 	return response.json()
+
+	  	// 	 }).then(
+  		// (responseData) => {
+
+    //     var categories = responseData.map(function(item) {
+    //         return item['resourceName'];
+    //       });
+    //     this.setState({array:categories});
+    //   console.log(responseData)
+  		// console.log(responseData)
+  		// }).catch((error) => {
+  		// 	console.log(error)
+  		//       });
+
+
   	}
   	render() {
   		var newComp=[] ;
