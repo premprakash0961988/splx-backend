@@ -2,8 +2,8 @@ import React,{Component} from 'react'
 import ReactDOM from 'react-dom';
 var http = require('http');
 
-//var request = require('request')
 let baseURL  =  'http://52.43.27.150:8080';
+//let baseURL  =  'http://localhost:8080';
 
 
 
@@ -45,7 +45,8 @@ class Main extends Component {
         this.setState({array:categoryTitles});
   		}).catch((error) => {
   			console.log(error)
-  		      });
+              
+      });
 
 
   	}
@@ -58,11 +59,18 @@ class Main extends Component {
 
 
        getCategoryData(index) {
-        let dataURL = categories[index].get;
-        
+         let resourceName = categories[index].resourceName;
+          let requestURL =  baseURL + '/fetch?category=' + resourceName
+          fetch(requestURL,{
+              method:'get',
+              }).then((response) => { 
+                console.log(response);
+              })
+        }
 
 
-       }
+
+       //}
 
 
   	render() {
