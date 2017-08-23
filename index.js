@@ -2,11 +2,16 @@ import React,{Component} from 'react'
 import ReactDOM from 'react-dom';
 var http = require('http');
 
+//var request = require('request')
+let baseURL  =  'http://52.43.27.150:8080';
 
 
 
+var categories = []
 
 class Main extends Component {
+  
+
 	constructor(props){
 		super(props)
 		this.state={array:[]}
@@ -14,76 +19,65 @@ class Main extends Component {
 	componentDidMount(){
 		var input = ["a","b","c","d","e"];
 		this.setState({array:input})
+    var self = this;
+
+    let requestURL =  baseURL + '/getAllCategories'
 
 
+  		fetch(requestURL,{
+	  		method:'get',
+  		}).then(
 
-var options = {
-  host: '52.43.27.150',
-  port: '8080',
-  path: '/getAllCategories',
-//  mode: 'no-cors'
-};
+	  		(response) => { 
+          this.setState({array:["x","y"]});
 
+	  			console.log("Hey i am here");
+	  			console.log(response);
+	  		return response.json()
 
+	  		 }).then(
+  		(responseData) => {
+        categories = responseData
 
-var myInit = { method: 'GET',
-               mode: 'no-cors',
-               cache: 'default' };
-var myRequest = new Request('http://52.43.27.150:8080/getAllCategories', myInit);
-
-fetch(myRequest).then(function(response) {
-  console.log(response.blob());
-  return response.blob();
-}).then(function(myBlob) {
-  
-});
-
-
-  		// fetch('http://52.43.27.150:8080/getAllCategories',{
-	  	// 	method:'get',
-	  	//     mode: 'no-cors',
-	  	// 	// headers: {
-	  	// 	//             'X-API-CLIENT':'web',
-	  	// 	//             "Content-Type": reqObj['contentType'] ?reqObj['contentType'] : "application/x-www-form-urlencoded"
-	  	// 	//        },
-	  	// 	//        body:reqObj.body
-  		// }).then(
-
-	  	// 	(response) => { 
-    //       this.setState({array:["x","y"]});
-
-	  	// 		console.log("Hey i am here");
-	  	// 		console.log(response);
-	  	// 	return response.json()
-
-	  	// 	 }).then(
-  		// (responseData) => {
-
-    //     var categories = responseData.map(function(item) {
-    //         return item['resourceName'];
-    //       });
-    //     this.setState({array:categories});
-    //   console.log(responseData)
-  		// console.log(responseData)
-  		// }).catch((error) => {
-  		// 	console.log(error)
-  		//       });
+        var categoryTitles = responseData.map(function(item) {
+            return item['resourceName'];
+          });
+        this.setState({array:categoryTitles});
+  		}).catch((error) => {
+  			console.log(error)
+  		      });
 
 
   	}
+
+      handleClick(index) {
+        //console.log(categories[index]);
+        this.getCategoryData(index)
+       }
+
+
+
+       getCategoryData(index) {
+        let dataURL = categories[index].get;
+        
+
+
+       }
+
+
   	render() {
   		var newComp=[] ;
   	if(this.state.array.length){
   		this.state.array.map((item,index)=>{
   			newComp.push(
-  				<div key={index} >{item}</div>
+               <div  key={index}><button  onClick={()=>{this.handleClick(index)}}>{item }</button> </div>
   			)
   		})
   		
   	}
     return (
     	<div>
-      		<h1>Hello world!</h1>
+      		<h1>All Categories</h1>
       		{newComp}
       	</div>
     );

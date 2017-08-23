@@ -5,6 +5,9 @@ var config = {
     './index.js'
   ],
   devtool: 'cheap-module-source-map',
+	node: {
+		fs : "empty"
+	},
   output: {
     path: path.join(__dirname, 'static'),
     filename: 'bundle.js',

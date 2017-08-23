@@ -9767,6 +9767,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var http = __webpack_require__(202);
 
+//var request = require('request')
+var baseURL = 'http://52.43.27.150:8080';
+
+var categories = [];
+
 var Main = function (_Component) {
   _inherits(Main, _Component);
 
@@ -9782,67 +9787,63 @@ var Main = function (_Component) {
   _createClass(Main, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       var input = ["a", "b", "c", "d", "e"];
       this.setState({ array: input });
+      var self = this;
 
-      var options = {
-        host: '52.43.27.150',
-        port: '8080',
-        path: '/getAllCategories'
-        //  mode: 'no-cors'
-      };
+      var requestURL = baseURL + '/getAllCategories';
 
-      var myInit = { method: 'GET',
-        mode: 'no-cors',
-        cache: 'default' };
-      var myRequest = new Request('http://52.43.27.150:8080/getAllCategories', myInit);
+      fetch(requestURL, {
+        method: 'get'
+      }).then(function (response) {
+        _this2.setState({ array: ["x", "y"] });
 
-      fetch(myRequest).then(function (response) {
-        console.log(response.blob());
-        return response.blob();
-      }).then(function (myBlob) {});
+        console.log("Hey i am here");
+        console.log(response);
+        return response.json();
+      }).then(function (responseData) {
+        categories = responseData;
 
-      // fetch('http://52.43.27.150:8080/getAllCategories',{
-      // 	method:'get',
-      //     mode: 'no-cors',
-      // 	// headers: {
-      // 	//             'X-API-CLIENT':'web',
-      // 	//             "Content-Type": reqObj['contentType'] ?reqObj['contentType'] : "application/x-www-form-urlencoded"
-      // 	//        },
-      // 	//        body:reqObj.body
-      // }).then(
-
-      // 	(response) => { 
-      //       this.setState({array:["x","y"]});
-
-      // 		console.log("Hey i am here");
-      // 		console.log(response);
-      // 	return response.json()
-
-      // 	 }).then(
-      // (responseData) => {
-
-      //     var categories = responseData.map(function(item) {
-      //         return item['resourceName'];
-      //       });
-      //     this.setState({array:categories});
-      //   console.log(responseData)
-      // console.log(responseData)
-      // }).catch((error) => {
-      // 	console.log(error)
-      //       });
-
+        var categoryTitles = responseData.map(function (item) {
+          return item['resourceName'];
+        });
+        _this2.setState({ array: categoryTitles });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(index) {
+      //console.log(categories[index]);
+      this.getCategoryData(index);
+    }
+  }, {
+    key: 'getCategoryData',
+    value: function getCategoryData(index) {
+      var dataURL = categories[index].get;
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var newComp = [];
       if (this.state.array.length) {
         this.state.array.map(function (item, index) {
           newComp.push(_react2.default.createElement(
             'div',
             { key: index },
-            item
+            _react2.default.createElement(
+              'button',
+              { onClick: function onClick() {
+                  _this3.handleClick(index);
+                } },
+              item
+            ),
+            ' '
           ));
         });
       }
@@ -9852,7 +9853,7 @@ var Main = function (_Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'Hello world!'
+          'All Categories'
         ),
         newComp
       );
