@@ -3,20 +3,23 @@ import ReactDOM, { render } from 'react-dom';
 
 import  TestPage from  './test';
 import  Car from  './details';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import {Router,Route} from 'react-router';
+
+import {Router} from 'react-router';
 
 
 var http = require('http');
 
 let baseURL  =  'http://52.43.27.150:8080';
 //let baseURL  =  'http://localhost:8080';
+var browserRouter = require('react-router-dom').BrowserRouter
 
 
 
 var categories = []
 //const rootElement = ;
-class Main extends Component {
+class Home extends Component {
   
 
 	constructor(props){
@@ -25,10 +28,10 @@ class Main extends Component {
 	}
 	componentDidMount(){
 		var input = ["a","b","c","d","e"];
-    var comp = <Test/>
+    
 		this.setState({array:input})
     this.setState({test:false})
-    this.setState({comp:comp})
+    //this.setState({comp:comp})
     var self = this;
 
     let requestURL =  baseURL + '/getAllCategories'
@@ -80,32 +83,18 @@ class Main extends Component {
               })
         }
 
-
-
        //}
 
-
   	render() {
-      if (this.state.test){
-        return (
-                <div>
-          <h1>Test</h1>
-
-        <Test> </Test>
-        </div>
-          );
-
-      }
-
   		var newComp=[] ;
   	if(this.state.array.length){
   		this.state.array.map((item,index)=>{
   			newComp.push(
                <div  key={index}><button  onClick={()=>{this.handleClick(index)}}>{item }</button> </div>
   			)
-  		})
-  		
+  		})	
   	}
+
     return (
     	<div>
       		<h1>All Categories</h1>
@@ -115,11 +104,37 @@ class Main extends Component {
   } 
 }
 
+const Main = () => (
+  <main>
+    <Switch>
+    <Route exact path='/' component={Home}/>
+      <Route path='/test' component={TestPage}/>
+      <Route path='/car' component={Car}/>
+    </Switch>
+  </main>
+)
+
+
+const App = () => (
+  <div>
+    <Main />
+  </div>
+)
 //ReactDOM.render(<Main />, document.getElementById('root')); 	 	
 render( 
-      <Router component={Main} path="app">
-      <Route path ="/test" Component={TestPage} />
-      <Route path ="/car" Component={Car} />
-    </Router>,
-  document.getElementById('app')
+
+  <BrowserRouter>
+           <App />
+     </BrowserRouter>,
+document.getElementById('root')
+ // <BrowserRouter>
+ //      <Router component={Main} path="app">
+ //      <Route path ="/test" Component={TestPage} />
+ //      <Route path ="/car" Component={Car} />
+ //     </BrowserRouter>,
+
+  
 )
+
+
+
