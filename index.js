@@ -1,5 +1,12 @@
 import React,{Component} from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
+
+import  TestPage from  './test';
+import  Car from  './details';
+
+import {Router,Route} from 'react-router';
+
+
 var http = require('http');
 
 let baseURL  =  'http://52.43.27.150:8080';
@@ -8,7 +15,7 @@ let baseURL  =  'http://52.43.27.150:8080';
 
 
 var categories = []
-
+//const rootElement = ;
 class Main extends Component {
   
 
@@ -18,7 +25,10 @@ class Main extends Component {
 	}
 	componentDidMount(){
 		var input = ["a","b","c","d","e"];
+    var comp = <Test/>
 		this.setState({array:input})
+    this.setState({test:false})
+    this.setState({comp:comp})
     var self = this;
 
     let requestURL =  baseURL + '/getAllCategories'
@@ -53,7 +63,9 @@ class Main extends Component {
 
       handleClick(index) {
         //console.log(categories[index]);
-        this.getCategoryData(index)
+        this.setState({test:true})
+      
+        //this.getCategoryData(index)
        }
 
 
@@ -74,6 +86,17 @@ class Main extends Component {
 
 
   	render() {
+      if (this.state.test){
+        return (
+                <div>
+          <h1>Test</h1>
+
+        <Test> </Test>
+        </div>
+          );
+
+      }
+
   		var newComp=[] ;
   	if(this.state.array.length){
   		this.state.array.map((item,index)=>{
@@ -92,4 +115,11 @@ class Main extends Component {
   } 
 }
 
-ReactDOM.render(<Main />, document.getElementById('root')); 	 	
+//ReactDOM.render(<Main />, document.getElementById('root')); 	 	
+render( 
+      <Router component={Main} path="app">
+      <Route path ="/test" Component={TestPage} />
+      <Route path ="/car" Component={Car} />
+    </Router>,
+  document.getElementById('app')
+)
