@@ -4,7 +4,7 @@ import ReactDOM, { render } from 'react-dom';
 import  TestPage from  './test';
 import  Car from  './details';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 
 import {Router} from 'react-router';
 
@@ -114,26 +114,31 @@ const Main = () => (
   </main>
 )
 
+const Header = () => (
+  <header>
+    <nav>
+      <ul>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='test'>TestPage</Link></li>
+        <li><Link to='car'>Car</Link></li>
+      </ul>
+    </nav>
+  </header>
+)
 
 const App = () => (
   <div>
+    <Header />
     <Main />
   </div>
 )
-//ReactDOM.render(<Main />, document.getElementById('root')); 	 	
-render( 
 
+
+render( 
   <BrowserRouter>
            <App />
      </BrowserRouter>,
 document.getElementById('root')
- // <BrowserRouter>
- //      <Router component={Main} path="app">
- //      <Route path ="/test" Component={TestPage} />
- //      <Route path ="/car" Component={Car} />
- //     </BrowserRouter>,
-
-  
 )
 
 

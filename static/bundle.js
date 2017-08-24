@@ -16328,27 +16328,62 @@ var Main = function Main() {
   );
 };
 
+var Header = function Header() {
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'nav',
+      null,
+      _react2.default.createElement(
+        'ul',
+        null,
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/' },
+            'Home'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: 'test' },
+            'TestPage'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: 'car' },
+            'Car'
+          )
+        )
+      )
+    )
+  );
+};
+
 var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement(Header, null),
     _react2.default.createElement(Main, null)
   );
 };
-//ReactDOM.render(<Main />, document.getElementById('root')); 	 	
+
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRouterDom.BrowserRouter,
   null,
   _react2.default.createElement(App, null)
-), document.getElementById('root')
-// <BrowserRouter>
-//      <Router component={Main} path="app">
-//      <Route path ="/test" Component={TestPage} />
-//      <Route path ="/car" Component={Car} />
-//     </BrowserRouter>,
-
-
-);
+), document.getElementById('root'));
 
 /***/ }),
 /* 119 */
