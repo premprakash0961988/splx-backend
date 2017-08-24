@@ -3,6 +3,8 @@ import ReactDOM, { render } from 'react-dom';
 
 import  TestPage from  './test';
 import  Car from  './details';
+import  RCT from  './rct';
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -110,6 +112,7 @@ const Main = () => (
     <Route exact path='/' component={Home}/>
       <Route exact path='/test' component={TestPage}/>
       <Route exact path='/car' component={Car}/>
+      <Route exact path='/rct' component={RCT}/>
     </Switch>
   </main>
 )
@@ -121,6 +124,8 @@ const Header = () => (
         <li><Link to='/'>Home</Link></li>
         <li><Link to='test'>TestPage</Link></li>
         <li><Link to='car'>Car</Link></li>
+        <li><Link to='rct'>RCT</Link></li>
+        
       </ul>
     </nav>
   </header>

@@ -16187,6 +16187,10 @@ var _details = __webpack_require__(236);
 
 var _details2 = _interopRequireDefault(_details);
 
+var _rct = __webpack_require__(279);
+
+var _rct2 = _interopRequireDefault(_rct);
+
 var _reactRouterDom = __webpack_require__(263);
 
 var _reactRouter = __webpack_require__(100);
@@ -16323,7 +16327,8 @@ var Main = function Main() {
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/test', component: _test2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/car', component: _details2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/car', component: _details2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/rct', component: _rct2.default })
     )
   );
 };
@@ -16363,6 +16368,15 @@ var Header = function Header() {
             _reactRouterDom.Link,
             { to: 'car' },
             'Car'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: 'rct' },
+            'RCT'
           )
         )
       )
@@ -35050,6 +35064,60 @@ NavLink.defaultProps = {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(46);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RCT = function (_Component) {
+  _inherits(RCT, _Component);
+
+  function RCT() {
+    _classCallCheck(this, RCT);
+
+    return _possibleConstructorReturn(this, (RCT.__proto__ || Object.getPrototypeOf(RCT)).apply(this, arguments));
+  }
+
+  _createClass(RCT, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'h1',
+        null,
+        'RCT PAGE '
+      );
+    }
+  }]);
+
+  return RCT;
+}(_react.Component);
+
+exports.default = RCT;
 
 /***/ })
 /******/ ]);
