@@ -16322,8 +16322,8 @@ var Main = function Main() {
       _reactRouterDom.Switch,
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/test', component: _test2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/car', component: _details2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/test', component: _test2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/car', component: _details2.default })
     )
   );
 };

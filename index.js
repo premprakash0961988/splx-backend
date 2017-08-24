@@ -108,8 +108,8 @@ const Main = () => (
   <main>
     <Switch>
     <Route exact path='/' component={Home}/>
-      <Route path='/test' component={TestPage}/>
-      <Route path='/car' component={Car}/>
+      <Route exact path='/test' component={TestPage}/>
+      <Route exact path='/car' component={Car}/>
     </Switch>
   </main>
 )
